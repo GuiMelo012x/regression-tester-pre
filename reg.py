@@ -5,7 +5,7 @@ genai.configure(api_key=api_key)
 
 print("Conectando com o Gemini")
 
-model = genai.GenerativeModel("gemini-2.5-flash")
+model = genai.GenerativeModel("gemini-2.5-pro")
 
 response = model.generate_content("Qual a capital de Pernambuco?") # Teste
 
