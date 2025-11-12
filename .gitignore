@@ -1,0 +1,5 @@
+# Ignorar o arquivo com informações sensíveis
+.env
+
+# Ignorar a pasta do futuro ambiente virtual
+venv/
