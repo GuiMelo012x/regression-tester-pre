@@ -28,12 +28,40 @@ try:
 except FileNotFoundError:
     print("Arquivo 'amostra-1.diff' não encontrado.")
     exit()
-    
+
+# --- Prompt Mestre ---
+# Deve dizer quem a IA é, o que fazer com o arquivo .diff e o que ela deve responder.
+
+MASTER_PROMPT_TEMPLATE = """
+Você é um engenheiro de QA Sênior especialista em testes de regressão.
+Você deve analisar o 'git diff' de uma mudança de código e identificar quais testes existentes precisam ser executados para validar essa mudança.
+
+Responda APENAS com uma lista dos nomes dos testes impactados, separados por vírgula.
+Se nenhum teste for impactado, responda "Nenhum".
+
+Git Diff:
+---
+{diff_content}
+---
+Testes impactados:
+"""
+
+
+# O Python pega o texto do arquivo diff e insere no lugar de {diff_content} dentro do template do prompt.
+final_prompt = MASTER_PROMPT_TEMPLATE.format(diff_content=diff_text) 
+
+print("\n--- PROMPT CRIADO COM SUCESSO ---")
+print(final_prompt)
+print("---------------------------------\n")
+ 
+
+
+"""
+# ---------- IAs ----------
 
 
 
-
-    # ---------- Testando o Gemini ----------
+# ---------- Gemini ----------
 try:
     print("---------- Gemini ----------")
     print("Conectando com o Gemini...")
@@ -44,7 +72,7 @@ except Exception as e:
     print("Erro ao conectar com o Gemini:", str(e))
 
 
-     # ---------- Testando o Cohere ----------
+# ---------- Cohere ----------
 print("\n---------- Cohere ----------")
 
 try:
@@ -57,7 +85,7 @@ try:
 except Exception as e:
     print("Erro ao conectar com o Cohere:", str(e))
 
-# ---------- Testando o Hugging Face (Llama 3) ----------
+# ---------- Hugging Face (Llama 3) ----------
 print("\n---------- Hugging Face (Llama 3) ----------")
 
 API_URL = "https://router.huggingface.co/v1/chat/completions"
@@ -82,3 +110,4 @@ try:
 except Exception as e:
     # Captura erros (ex: falhas de rede, JSON inválido)
     print(f"Erro inesperado ao conectar com o Hugging Face: {e}")
+"""
