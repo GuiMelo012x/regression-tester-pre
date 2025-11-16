@@ -20,9 +20,18 @@ genai.configure(api_key=google_api_key) # Configura a chave da API do Google
 co_client = cohere.Client(cohere_api_key) # Configura a chave da API do Cohere
 hf_headers = {"Authorization": f"Bearer {hf_api_key}"} # Cabeçalho de autorização
 
-# --- Pergunta de Teste ---
-pergunta = "Qual a capital de Pernambuco?"
-print(f"Pergunta: {pergunta}\n")
+# --- Ler o arquivo DIFF ---
+try:
+    with open("amostras/amostra-1.diff","r", encoding="utf-8") as file:
+        diff_text = file.read()
+        print("Arquivo 'amostra-1.diff' lido com sucesso.")
+except FileNotFoundError:
+    print("Arquivo 'amostra-1.diff' não encontrado.")
+    exit()
+    
+
+
+
 
     # ---------- Testando o Gemini ----------
 try:

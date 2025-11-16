@@ -2,3 +2,4 @@ google-generativeai
 cohere
 python-dotenv
 requests
+pandas

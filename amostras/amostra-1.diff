@@ -1,0 +1,16 @@
+--- a/src/main/java/com/example/UserService.java
++++ b/src/main/java/com/example/UserService.java
+@@ -10,7 +10,12 @@
+     }
+ 
+     public User login(String username, String password) {
+-        if (username.equals("admin") && password.equals("pass123")) {
++        // Correção de segurança: usar .equals() de forma segura e validar null
++        if (username == null || password == null) {
++            return null;
++        }
++        
++        if ("admin".equals(username) && "pass123".equals(password)) {
+             return new User("admin", "Admin User");
+         }
+         return null;
