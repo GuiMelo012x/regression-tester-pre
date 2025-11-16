@@ -1,1 +1,1 @@
-# regression-tester
+# Regression Tester
