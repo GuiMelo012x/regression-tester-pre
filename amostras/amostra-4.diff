@@ -1,0 +1,9 @@
+--- a/src/main/java/com/example/RegistrationService.java
++++ b/src/main/java/com/example/RegistrationService.java
+@@ -40,7 +40,6 @@
+     public boolean register(User user) {
+         if (validate(user)) {
+-            db.insert(user); // ERRO: O usuário é validado mas nunca é salvo no banco
+             return true;
+         }
+         return false;
