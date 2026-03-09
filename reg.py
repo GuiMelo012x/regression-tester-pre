@@ -2,6 +2,7 @@ import google.generativeai as genai # pip install google-generativeai
 import cohere # pip install cohere
 import requests 
 import os
+import glob
 from dotenv import load_dotenv # pip install python-dotenv
 
 
@@ -20,20 +21,48 @@ genai.configure(api_key=google_api_key) # Configura a chave da API do Google
 co_client = cohere.Client(cohere_api_key) # Configura a chave da API do Cohere
 hf_headers = {"Authorization": f"Bearer {hf_api_key}"} # Cabeçalho de autorização
 
-# --- Ler o arquivo DIFF ---
-try:
-    with open("amostras/amostra-1.diff","r", encoding="utf-8") as file:
-        diff_text = file.read()
-        print("Arquivo 'amostra-1.diff' lido com sucesso.")
-except FileNotFoundError:
-    print("Arquivo 'amostra-1.diff' não encontrado.")
-    exit()
+# --- Prompt Mestre ---
+# Deve dizer quem a IA é, o que fazer com o arquivo .diff e o que ela deve responder.
+
+MASTER_PROMPT_TEMPLATE = """
+Você é um engenheiro de QA Sênior especialista em testes de regressão.
+Você deve analisar o 'git diff' de uma mudança de código e identificar quais testes existentes precisam ser executados para validar essa mudança.
+
+Responda APENAS com uma lista dos nomes dos testes impactados, separados por vírgula.
+Se nenhum teste for impactado, responda "Nenhum".
+
+Git Diff:
+---
+{diff_content}
+---
+Testes impactados:
+"""
+
+
+# O Python pega o texto do arquivo diff e insere no lugar de {diff_content} dentro do template do prompt.
+final_prompt = MASTER_PROMPT_TEMPLATE.format(diff_content=diff_text) 
+
+print("\n--- PROMPT CRIADO COM SUCESSO ---")
+print(final_prompt)
+print("---------------------------------\n")
+
+
+# --- INÍCIO DO LOOP DE ARQUIVOS ---
+for filepath in glob.glob("amostras/*.diff"):
+    print(f"\n======== PROCESSANDO: {filepath} ========")
     
+    with open(filepath, "r", encoding="utf-8") as file:
+        diff_text = file.read()
+
+    # Gera o prompt específico para este arquivo diff
+    final_prompt = MASTER_PROMPT_TEMPLATE.format(diff_content=diff_text)
+
+
+# ---------- IAs ----------
 
 
 
-
-    # ---------- Testando o Gemini ----------
+# ---------- Gemini ----------
 try:
     print("---------- Gemini ----------")
     print("Conectando com o Gemini...")
@@ -44,7 +73,7 @@ except Exception as e:
     print("Erro ao conectar com o Gemini:", str(e))
 
 
-     # ---------- Testando o Cohere ----------
+# ---------- Cohere ----------
 print("\n---------- Cohere ----------")
 
 try:
@@ -57,7 +86,7 @@ try:
 except Exception as e:
     print("Erro ao conectar com o Cohere:", str(e))
 
-# ---------- Testando o Hugging Face (Llama 3) ----------
+# ---------- Hugging Face (Llama 3) ----------
 print("\n---------- Hugging Face (Llama 3) ----------")
 
 API_URL = "https://router.huggingface.co/v1/chat/completions"
@@ -66,7 +95,7 @@ payload = {
     "model": "meta-llama/Meta-Llama-3-8B-Instruct",
     "messages": [{"role": "user", "content": pergunta}],
     "max_tokens": 256,
-    "temperature": 0.7
+    "temperature": 0.0
 }
 
 try:
@@ -82,3 +111,4 @@ try:
 except Exception as e:
     # Captura erros (ex: falhas de rede, JSON inválido)
     print(f"Erro inesperado ao conectar com o Hugging Face: {e}")
+
