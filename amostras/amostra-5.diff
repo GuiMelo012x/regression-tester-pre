@@ -1,0 +1,7 @@
+--- a/src/main/java/com/example/ReportGenerator.java
++++ b/src/main/java/com/example/ReportGenerator.java
+@@ -10,5 +10,5 @@
+     public String generateDailyReport(List<Order> orders) {
+-        return "Total orders: " + orders.size();
++        return "Relatório Diário - Total de Pedidos: " + orders.size();
+     }
