@@ -57,7 +57,7 @@ for filepath in glob.glob("amostras/*.diff"):
     # Gera o prompt específico para este arquivo diff
     final_prompt = MASTER_PROMPT_TEMPLATE.format(diff_content=diff_text)
 
-"""
+
 # ---------- IAs ----------
 
 
@@ -95,7 +95,7 @@ payload = {
     "model": "meta-llama/Meta-Llama-3-8B-Instruct",
     "messages": [{"role": "user", "content": pergunta}],
     "max_tokens": 256,
-    "temperature": 0.7
+    "temperature": 0.0
 }
 
 try:
@@ -111,4 +111,4 @@ try:
 except Exception as e:
     # Captura erros (ex: falhas de rede, JSON inválido)
     print(f"Erro inesperado ao conectar com o Hugging Face: {e}")
-"""
+
