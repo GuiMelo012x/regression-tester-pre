@@ -1,0 +1,10 @@
+--- a/src/main/java/com/example/ProductService.java
++++ b/src/main/java/com/example/ProductService.java
+@@ -15,6 +15,7 @@
+     
+     public void saveProduct(Product product) {
++        // TODO: Implementar validação de estoque futuro
+         repository.save(product);
+-        System.out.println("Produto salvo.");
++        System.out.println("Log: Operação de salvamento de produto executada com sucesso.");
+     }
