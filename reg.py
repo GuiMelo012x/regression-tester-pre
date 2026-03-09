@@ -2,6 +2,7 @@ import google.generativeai as genai # pip install google-generativeai
 import cohere # pip install cohere
 import requests 
 import os
+import glob
 from dotenv import load_dotenv # pip install python-dotenv
 
 
@@ -19,15 +20,6 @@ if not google_api_key or not cohere_api_key or not hf_api_key:
 genai.configure(api_key=google_api_key) # Configura a chave da API do Google
 co_client = cohere.Client(cohere_api_key) # Configura a chave da API do Cohere
 hf_headers = {"Authorization": f"Bearer {hf_api_key}"} # Cabeçalho de autorização
-
-# --- Ler o arquivo DIFF ---
-try:
-    with open("amostras/amostra-1.diff","r", encoding="utf-8") as file:
-        diff_text = file.read()
-        print("Arquivo 'amostra-1.diff' lido com sucesso.")
-except FileNotFoundError:
-    print("Arquivo 'amostra-1.diff' não encontrado.")
-    exit()
 
 # --- Prompt Mestre ---
 # Deve dizer quem a IA é, o que fazer com o arquivo .diff e o que ela deve responder.
@@ -53,8 +45,17 @@ final_prompt = MASTER_PROMPT_TEMPLATE.format(diff_content=diff_text)
 print("\n--- PROMPT CRIADO COM SUCESSO ---")
 print(final_prompt)
 print("---------------------------------\n")
- 
 
+
+# --- INÍCIO DO LOOP DE ARQUIVOS ---
+for filepath in glob.glob("amostras/*.diff"):
+    print(f"\n======== PROCESSANDO: {filepath} ========")
+    
+    with open(filepath, "r", encoding="utf-8") as file:
+        diff_text = file.read()
+
+    # Gera o prompt específico para este arquivo diff
+    final_prompt = MASTER_PROMPT_TEMPLATE.format(diff_content=diff_text)
 
 """
 # ---------- IAs ----------
