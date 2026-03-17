@@ -1,0 +1,10 @@
+--- a/src/main/java/com/example/Product.java
++++ b/src/main/java/com/example/Product.java
+@@ -50,7 +50,7 @@
+     }
+ 
+     public void applyDiscount(double percentage) {
+-        this.price = this.price - (this.price * (percentage / 100)); 
++        this.price = this.price + (this.price * (percentage / 100)); // ERRO: O desenvolvedor trocou o sinal e está aumentando o preço
+     }
+ }

@@ -1,0 +1,11 @@
+--- a/src/main/java/com/example/InvoiceExporter.java
++++ b/src/main/java/com/example/InvoiceExporter.java
+@@ -18,7 +18,6 @@
+     public void exportToCsv(List<Invoice> invoices, String filename) throws IOException {
+         FileWriter writer = new FileWriter(filename);
+         for (Invoice inv : invoices) {
+             writer.write(inv.toCsvRow() + "\n");
+         }
+-        writer.close(); // ERRO CRÍTICO: Vazamento de recurso. O descritor do ficheiro nunca é libertado.
+     }
+ }

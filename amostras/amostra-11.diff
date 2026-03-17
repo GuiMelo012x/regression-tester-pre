@@ -1,0 +1,15 @@
+--- a/src/main/java/com/example/OrderService.java
++++ b/src/main/java/com/example/OrderService.java
+@@ -45,9 +45,6 @@
+     }
+ 
+     public boolean cancelOrder(String orderId, User currentUser) {
+-        if (!currentUser.getRole().equals("ADMIN")) {
+-            throw new UnauthorizedException("Apenas administradores podem cancelar pedidos.");
+-        }
+         Order order = database.findOrder(orderId);
+         order.setStatus("CANCELED");
+         database.save(order);
+         return true;
+     }
+ }

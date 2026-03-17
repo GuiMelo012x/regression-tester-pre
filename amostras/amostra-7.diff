@@ -1,0 +1,14 @@
+--- a/src/main/java/com/example/PaymentService.java
++++ b/src/main/java/com/example/PaymentService.java
+@@ -20,7 +20,8 @@
+     public boolean processPayment(Order order, CreditCard card) {
+         try {
+             gateway.charge(card, order.getTotal());
+             return true;
+         } catch (PaymentGatewayException e) {
+-            throw new PaymentProcessingException("Payment failed", e);
++            System.out.println("Log: Falha no gateway de pagamento.");
++            return true; // ERRO CRÍTICO: Retorna 'true' (sucesso) mesmo quando o cartão é recusado
+         }
+     }
+ }

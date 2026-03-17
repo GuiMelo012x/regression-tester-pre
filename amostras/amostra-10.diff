@@ -1,0 +1,11 @@
+--- a/src/main/java/com/example/InventoryService.java
++++ b/src/main/java/com/example/InventoryService.java
+@@ -22,9 +22,6 @@
+     public boolean isStockAvailable(String productId, int quantity) {
+         Product product = database.getProduct(productId);
+-        if (product == null) {
+-            return false;
+-        }
+         return product.getStock() >= quantity; // ERRO CRÍTICO: Se o produto não existir (null), a chamada .getStock() causará um NullPointerException
+     }
+ }

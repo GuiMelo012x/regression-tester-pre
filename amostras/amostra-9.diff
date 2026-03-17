@@ -1,0 +1,11 @@
+--- a/src/main/java/com/example/CouponService.java
++++ b/src/main/java/com/example/CouponService.java
+@@ -30,7 +30,6 @@
+     public boolean applyCoupon(String code, Cart cart) {
+         Coupon coupon = database.findCoupon(code);
+         if (coupon != null && coupon.isValid()) {
+             cart.applyDiscount(coupon.getValue());
+-            coupon.setUsed(true); // ERRO CRÍTICO: O cupão aplica o desconto, mas já não é marcado como usado.
+             database.save(coupon);
+             return true;
+         }

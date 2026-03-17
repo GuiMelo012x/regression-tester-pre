@@ -1,0 +1,11 @@
+--- a/src/main/java/com/example/ShippingService.java
++++ b/src/main/java/com/example/ShippingService.java
+@@ -15,7 +15,7 @@
+     }
+ 
+     public double calculateShipping(double cartTotal) {
+-        if (cartTotal >= 100.0) {
++        if (cartTotal > 100.0) { // ERRO CRÍTICO: Clientes com carrinho de exatamente 100.0 agora pagam frete indevidamente
+             return 0.0; // Frete grátis
+         }
+         return 15.0; // Frete fixo

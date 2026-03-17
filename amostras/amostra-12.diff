@@ -1,0 +1,12 @@
+--- a/src/main/java/com/example/RecommendationService.java
++++ b/src/main/java/com/example/RecommendationService.java
+@@ -20,7 +20,7 @@
+     public List<Product> getTopRecommendations(List<Product> catalog, int limit) {
+         List<Product> recommendations = new ArrayList<>();
+-        for (int i = 0; i < limit && i < catalog.size(); i++) {
++        for (int i = 0; i <= limit && i <= catalog.size(); i++) { // ERRO CRÍTICO: Off-by-one. Causará IndexOutOfBoundsException na última iteração.
+             recommendations.add(catalog.get(i));
+         }
+         return recommendations;
+     }
+ }
