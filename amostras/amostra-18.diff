@@ -1,0 +1,10 @@
+--- a/src/main/java/com/example/WalletService.java
++++ b/src/main/java/com/example/WalletService.java
+@@ -15,7 +15,7 @@
+     }
+ 
+-    public synchronized void addFunds(double amount) {
++    public void addFunds(double amount) { // ERRO CRÍTICO: A remoção do synchronized permite que duas threads sobrescrevam o saldo em simultâneo.
+         this.balance += amount;
+     }
+ }

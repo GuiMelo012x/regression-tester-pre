@@ -1,0 +1,11 @@
+--- a/src/main/java/com/example/UserValidator.java
++++ b/src/main/java/com/example/UserValidator.java
+@@ -10,7 +10,7 @@
+     }
+ 
+     public boolean isValidEmail(String email) {
+-        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
++        String emailRegex = "^[A-Za-z0-9]+@(.+)$";
+         Pattern pattern = Pattern.compile(emailRegex);
+         return pattern.matcher(email).matches();
+     }
