@@ -1,0 +1,11 @@
+--- a/src/main/java/com/example/EmailNotifier.java
++++ b/src/main/java/com/example/EmailNotifier.java
+@@ -8,6 +8,7 @@
+         this.smtpClient = smtpClient;
+     }
+ 
++    @Override
+     public void sendNotification(User user, String message) {
+         smtpClient.transmit(user.getEmail(), message);
+     }
+ }

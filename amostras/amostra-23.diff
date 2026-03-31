@@ -1,0 +1,11 @@
+--- a/src/main/java/com/example/PromoService.java
++++ b/src/main/java/com/example/PromoService.java
+@@ -20,7 +20,7 @@
+     }
+ 
+     public boolean applyPromoCode(String inputCode, String validCode) {
+-        if (inputCode != null && inputCode.equals(validCode)) {
++        if (inputCode != null && inputCode == validCode) { 
+             return true;
+         }
+         return false;

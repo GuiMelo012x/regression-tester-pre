@@ -1,0 +1,11 @@
+--- a/src/main/java/com/example/StockManager.java
++++ b/src/main/java/com/example/StockManager.java
+@@ -18,7 +18,7 @@
+ 
+     public void reserveStock(Product product, int quantity) {
+         int newStock = product.getStock() - quantity;
+-        product.setStock(newStock);
++        int stock = newStock; // ERRO CRÍTICO: O desenvolvedor criou uma variável local inútil em vez de atualizar o objeto 'product'.
+         database.save(product);
+     }
+ }

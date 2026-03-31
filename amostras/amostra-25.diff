@@ -1,0 +1,11 @@
+--- a/src/main/java/com/example/CatalogService.java
++++ b/src/main/java/com/example/CatalogService.java
+@@ -22,8 +22,8 @@
+     }
+ 
+     public List<Product> getFeaturedProducts() {
+-        List<Product> featured = database.fetchFeatured();
++        var featured = database.fetchFeatured();
+         return featured;
+     }
+ }

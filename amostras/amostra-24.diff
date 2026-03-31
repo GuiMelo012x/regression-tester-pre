@@ -1,0 +1,14 @@
+--- a/src/main/java/com/example/OrderProcessor.java
++++ b/src/main/java/com/example/OrderProcessor.java
+@@ -18,7 +18,9 @@
+     }
+ 
+     public void removeCanceledOrders(List<Order> orders) {
+-        orders.removeIf(Order::isCanceled);
++        for (Order order : orders) {
++            if (order.isCanceled()) {
++                orders.remove(order); // ERRO CRÍTICO: Modificar a lista durante o for-each lança ConcurrentModificationException
++            }
++        }
+     }
+ }

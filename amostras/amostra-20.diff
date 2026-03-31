@@ -1,0 +1,14 @@
+--- a/src/main/java/com/example/CustomerMapper.java
++++ b/src/main/java/com/example/CustomerMapper.java
+@@ -10,9 +10,9 @@
+     }
+ 
+     public CustomerDto toDto(Customer customer) {
+-        String n = customer.getFullName();
+-        String e = customer.getEmail();
+-        return new CustomerDto(n, e);
++        String fullName = customer.getFullName();
++        String email = customer.getEmail();
++        return new CustomerDto(fullName, email);
+     }
+ }

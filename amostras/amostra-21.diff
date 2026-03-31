@@ -1,0 +1,10 @@
+--- a/src/main/java/com/example/CampaignService.java
++++ b/src/main/java/com/example/CampaignService.java
+@@ -18,7 +18,7 @@
+     }
+ 
+     public boolean isCampaignActive(Campaign campaign, LocalDate today) {
+-        return today.isAfter(campaign.getStartDate()) && today.isBefore(campaign.getEndDate());
++        return today.isAfter(campaign.getStartDate());
+     }
+ }
