@@ -1,0 +1,31 @@
+Amostra;Alteração Feita no Código;Explicação;Gabarito;Módulo
+1;Correção de segurança: usar .equals() de forma segura e validar null. Nenhuma Mudança.;É apenas uma correção de segurança de .equals(), não quebrou o login se a senha for certa.;Nenhum;UserService
+2;ERRO: Esqueceu de multiplicar pela quantidade.;Injeção de falha matemática grave.;CartTest ;CartService
+3;Nenhuma mudança, apenas de texto.;Apenas mudança de texto de print/log, ruído puro.;Nenhum;ProductService
+4;ERRO: O usuário é validado mas nunca é salvo no banco.;O usuário parou de ser salvo no banco de dados.;RegistrationTest;RegistrationService
+5;ERRO: A string de saída mudou estruturalmente.;A string de saída mudou estruturalmente.;ReportTest;ReportGenerator
+6;ERRO: O desenvolvedor trocou o sinal e está aumentando o preço.;Erro de lógica semântica ao trocar o sinal matemático do desconto de subtração para adição.;ProductTest ;Product
+7;ERRO: Retorna 'true' (sucesso) mesmo quando o cartão é recusado.;"Omissão de exceção ou ""swallow"", retornando sucesso mesmo quando o cartão é recusado no gateway.";PaymentTest ;PaymentService
+8;ERRO: Clientes com carrinho de exatamente 100.0 agora pagam frete indevidamente.;Erro de limite/fronteira ao alterar o operador de >= para >, cobrando frete indevido no valor exato do limite.;ShippingTest;ShippingService
+9;ERRO: O cupom aplica o desconto, mas já não é marcado como usado.;Omissão de atualização de estado, o desconto é aplicado mas a função setUsed foi removida, permitindo uso infinito.;CouponTest;CouponService
+10;ERRO: Se o produto não existir (null), a chamada .getStock() causará um NullPointerException.;Remoção de validação de segurança contra nulo, introduzindo o risco de um NullPointerException em tempo de execução.;InventoryTest;InventoryService
+11;ERRO: Remoção da exception na qual apenas administradores podem cancelar pedidos.;Bypass de segurança e autorização ao remover a validação de permissão da Role de administrador para cancelar pedidos.;OrderTest;OrderService
+12;ERRO: Off-by-one. Causará IndexOutOfBoundsException na última iteração.;"Erro de iteração ""off-by-one"" num laço for, alterando de < para <=, o que causará estouro do limite da lista.";RecommendationTest;RecommendationService
+13;ERRO: Vazamento de recurso. O descritor do ficheiro nunca é libertado.;"Vazamento de recurso ou ""resource leak"" devido à remoção do comando .close() do manipulador de arquivos.";InvoiceTest;InvoiceExporter
+14;Adição de comentários.;Apenas adição de comentários/JavaDoc, o que não altera o código executável e não exige novos testes.;Nenhum;EmailService
+15;Adição de comentários.;Remoção de código morto/variáveis não utilizadas, não altera o fluxo de execução do sistema.;Nenhum;NotificationService
+16;Troca de um laço de for por Streams.;Não tem erro, é uma melhoria. A nova implementação faz exatamente o mesmo que a antiga. Deve ser testado.;SearchTest;SearchService
+17;Espaço / Quebra de Linha.;Alteração exclusiva de espaços em branco e quebras de linha (identação).;Nenhum;BillingService
+18;ERRO: A remoção do synchronized permite que duas threads sobrescrevam o saldo em simultâneo.;Remoção da palavra-chave synchronized, comprometendo a segurança multi-thread da operação de adição de saldo.;WalletTest;WalletService
+19;ERRO: O programador removeu o suporte para '+', '_', '.' e '-' na primeira parte do e-mail.;Remoção de caracteres permitidos (+_.-) na expressão regular de validação de e-mail.;ValidatorTest;UserValidator
+20;Refatoração.;Renomeação de variáveis locais para melhorar a legibilidade. Não afeta a lógica.;Nenhum;CustomerMapper
+21;ERRO: A campanha (promoção) agora fica ativa para sempre, ignorando a data de término.;Remoção de uma condição lógica envolvendo datas (faz uma promoção temporária tornar-se permanente).;CampaignTest;CampaignService
+22;Refatoração de Estilo;Adição de Chaves {} em blocos if de uma única linha;Nenhum;AuthService
+23;ERRO: Falha de Comparação (Java); '==' em Java compara referências de memória, falhando ao validar Strings idênticas instanciadas separadamente.;PromoTest;PromoService
+24;ERRO: Modificar a lista durante o for-each lança ConcurrentModificationException;Substituição de removeIf por um for-each com .remove(), causando um ConcurrentModificationException.;OrderTest;OrderProcessor
+25;Refatoração Sintática;Substituição da declaração explícita de tipo pela inferência var. O bytecode permanece idêntico.;Nenhum;CatalogService
+26;Metadados (Anotação);Adição de @Override num método existente. Não afeta o código em tempo de execução.;Nenhum;EmailNotifier
+27;ERRO: O desenvolvedor criou uma variável local inútil em vez de atualizar o objeto 'product'.;Substituição de um setter (setStock) por uma declaração de variável local, impedindo a atualização do objeto.;InventoryTest;StockManager
+28;Estilo / Clean Code;Adição de final nos parâmetros do método. Não altera o comportamento executável.;Nenhum;AuditLogger
+29;ERRO: Divisão entre dois inteiros trunca as casas decimais no Java.;Remoção do cast (double), resultando em truncamento de casas decimais numa divisão de inteiros.;ReviewTest;ReviewService
+30;Estilo / Padronização;Adição explícita do prefixo this. em atributos de classe. Não altera o código compilado.;Nenhum;CustomerProfile
