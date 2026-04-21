@@ -1,6 +1,7 @@
 import google.generativeai as genai # pip install google-generativeai
 import cohere # pip install cohere
 import requests 
+import re
 import os
 import glob
 import pandas as pd
@@ -45,7 +46,8 @@ Testes impactados:
 resultados = []
 
 # --- INÍCIO DO ÚNICO LOOP DE ARQUIVOS ---
-for filepath in glob.glob("amostras/*.diff"):
+ficheiros = sorted(glob.glob("amostras/*.diff"), key=lambda x: int(re.findall(r'\d+', x)[0]))
+for filepath in ficheiros:
     print(f"\n======== PROCESSANDO: {filepath} ========")
     
     with open(filepath, "r", encoding="utf-8") as file:
