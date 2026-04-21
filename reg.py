@@ -4,6 +4,7 @@ import requests
 import re
 import os
 import glob
+import time
 import pandas as pd
 from dotenv import load_dotenv # pip install python-dotenv
 
@@ -64,7 +65,7 @@ for filepath in ficheiros:
     # ---------- Gemini ----------
     try:
         print("Conectando com o Gemini...")
-        model_gemini = genai.GenerativeModel("gemini-2.5-pro")
+        model_gemini = genai.GenerativeModel("gemini-1.5-flash")
         response_gemini = model_gemini.generate_content(final_prompt) 
         resp_gemini = response_gemini.text.strip()
         print("Resposta do Gemini:", resp_gemini)
@@ -109,6 +110,9 @@ for filepath in ficheiros:
         "Cohere": resp_cohere,
         "Llama3": resp_hf
     })
+    # A pausa obrigatória para respeitar a Free Tier, pois estava bloqueando por "muitas requisições".
+    print("Aguardando 5 segundos para evitar bloqueios de API...") 
+    time.sleep(5)
 
 # --- FIM DO LOOP ---
 
