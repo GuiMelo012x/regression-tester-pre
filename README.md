@@ -14,4 +14,4 @@ A pesquisa utiliza um dataset de **30 amostras** de código Java, balanceado ent
 - `amostras/`: Contém os 30 ficheiros `.diff` utilizados como input para os modelos.
 - `reg.py`: Script principal que automatiza as chamadas às APIs e consolida os resultados.
 - `requirements.txt`: Lista de dependências necessárias para a execução do projeto.
-- `Gabarito - A SER ADICIONADO`: A base de referência (ground truth) para o cálculo das métricas de precisão.
+- `Gabarito.csv`: A base de referência (ground truth) para o cálculo das métricas de precisão.
