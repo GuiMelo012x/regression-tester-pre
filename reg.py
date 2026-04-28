@@ -1,4 +1,3 @@
-import google.generativeai as genai # pip install google-generativeai
 import cohere # pip install cohere
 import requests 
 import re
@@ -7,20 +6,22 @@ import glob
 import time
 import pandas as pd
 from dotenv import load_dotenv # pip install python-dotenv
+from google import genai # pip install -q -U google-genai
 
 
 load_dotenv() # Carrega variáveis de ambiente do arquivo .env"
-google_api_key = os.getenv("GOOGLE_API_KEY") # Pega a chave do Google
+
+google_key = os.getenv("GOOGLE_API_KEY") # Pega a chave do Google Gemini
 cohere_api_key = os.getenv("COHERE_API_KEY") # Pega a chave do Cohere
 hf_api_key = os.getenv("HF_API_KEY") # Pega a chave do Hugging Face
 
-if not google_api_key or not cohere_api_key or not hf_api_key:
+if not google_key or not cohere_api_key or not hf_api_key:
     print("Erro: Chaves de API não encontradas no .env")
     print("Verifique seu .env")
     exit() # Para o programa se as chaves não forem encontradas
 
 # Configuração das APIs
-genai.configure(api_key=google_api_key) # Configura a chave da API do Google
+client_gemini = genai.Client(api_key = google_key) # Configura a chave da API do Google Gemini
 co_client = cohere.Client(cohere_api_key) # Configura a chave da API do Cohere
 hf_headers = {"Authorization": f"Bearer {hf_api_key}"} # Cabeçalho de autorização
 
@@ -65,8 +66,10 @@ for filepath in ficheiros:
     # ---------- Gemini ----------
     try:
         print("Conectando com o Gemini...")
-        model_gemini = genai.GenerativeModel("gemini-1.5-flash")
-        response_gemini = model_gemini.generate_content(final_prompt) 
+        response_gemini = client_gemini.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=final_prompt,
+        )
         resp_gemini = response_gemini.text.strip()
         print("Resposta do Gemini:", resp_gemini)
     except Exception as e:
