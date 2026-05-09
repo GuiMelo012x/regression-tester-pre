@@ -4,7 +4,7 @@ import re
 # Etapa 1 - Carregar os dados
 print("Carregando os dados...")
 df_resultados = pd.read_csv('resultados_tcc.csv')
-df_gabarito = pd.read_csv('Gabarito.csv', sep=';') # O gabarito usa ponto e vírgula
+df_gabarito = pd.read_csv('Gabarito.csv', sep=';', encoding='latin-1') # O gabarito usa ponto e vírgula, e a codificação do csv foi salva como latin-1.
 
 # Etapa 2 - Alinha os ficheiros através do número da amostra, como amostra-1.diff, amostra-2.diff, etc.
 df_resultados['Amostra'] = df_resultados['Arquivo'].apply(lambda x: int(re.findall(r'\d+', x)[0]))
@@ -12,7 +12,7 @@ df_completo = pd.merge(df_resultados, df_gabarito, on='Amostra')
 modelos = ['Gemini', 'Cohere', 'Llama3']
 metricas = {}
 
-total_tentativas = len(df_completo) # Conta exatamente quantas amostras o script processou (ex: 30)
+total_tentativas = len(df_completo) # Conta exatamente quantas amostras o script processou
 print(f"Total de Amostras (Tentativas) processadas: {total_tentativas}\n")
 print("Calculando as métricas...\n")
 
@@ -60,3 +60,25 @@ for modelo in modelos:
         'F1-Score': f1 * 100,
         'VP': vp, 'VN': vn, 'FP': fp, 'FN': fn
     }
+
+# --- VISUAL ---
+print("="*50)
+print("RESULTADOS FINAIS DAS MÉTRICAS DE AVALIAÇÃO")
+print("="*50)
+
+for modelo, dados in metricas.items():
+    print(f"\nMODELO: {modelo.upper()}")
+    print(f"Total de Tentativas:   {dados['Tentativas']} amostras")
+    print(f"TAXA DE ACERTO GERAL:  {dados['Taxa de Acerto']:.2f}%\n")
+    
+    print("  --- Detalhamento dos Acertos e Erros ---")
+    print(f"   Acertos Críticos (VP): {dados['VP']}")
+    print(f"   Acertos Benignos (VN): {dados['VN']} (Identificou 'Nenhum')")
+    print(f"   Alucinações (FP):      {dados['FP']}")
+    print(f"   Falhas Graves (FN):    {dados['FN']}")
+    
+    print("\n  --- Métricas Científicas ---")
+    print(f"   Precisão: {dados['Precisão']:.2f}%")
+    print(f"   Recall:   {dados['Recall']:.2f}%")
+    print(f"   F1-Score: {dados['F1-Score']:.2f}%")
+    print("-" * 50)
