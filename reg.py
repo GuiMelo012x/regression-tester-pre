@@ -114,8 +114,8 @@ for filepath in ficheiros:
         "Llama3": resp_hf
     })
     # A pausa obrigatória para respeitar a Free Tier, pois estava bloqueando por "muitas requisições".
-    print("Aguardando 30 segundos para evitar bloqueios de API...") 
-    time.sleep(30)
+    print("Aguardando 60 segundos para evitar bloqueios de API...") 
+    time.sleep(60)
 
 # --- FIM DO LOOP ---
 
