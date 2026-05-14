@@ -1,0 +1,97 @@
+Arquivo,Gemini,Cohere,Llama3
+amostra-1.diff,"UserServiceTest.testLogin_SuccessfulAdmin,UserServiceTest.testLogin_InvalidCredentials,UserServiceTest.testLogin_NullUsername,UserServiceTest.testLogin_NullPassword,UserServiceTest.testLogin_NullUsernameAndNullPassword","testLoginWithValidCredentials, testLoginWithNullUsername, testLoginWithNullPassword, testLoginWithInvalidCredentials","Teste de Autenticação com Credenciais Inválidas, 
+Teste de Autenticação com Credenciais Válidas, 
+Teste de Autenticação com Credenciais Nulas, 
+Teste de Segurança de Autenticação."
+amostra-2.diff,"CartService.testCalculateTotalWithMultipleItems, CartService.testCalculateTotalWithSingleItem, CartService.testCalculateTotalWithDifferentQuantities, CartService.testCalculateTotalForEmptyCart, CartIntegrationTests.testAddItemToCartAndVerifyTotal, CheckoutFlowTests.testSuccessfulCheckoutWithMultipleItems, E2ESuite.testUserCompletesPurchaseWithCorrectTotal","testCalculateTotalWithMultipleItems, testCalculateTotalWithSingleItem, testCalculateTotalWithZeroItems, testCalculateTotalWithDiscountedItems (se existir)","Teste_CartService_CalculateTotal_Quantidade, 
+Teste_CartService_CalculateTotal_Preco, 
+Teste_CartService_CalculateTotal_Vazio, 
+Teste_CartService_CalculateTotal_Vazio_Quantidade, 
+Teste_CartService_CalculateTotal_Vazio_Preco, 
+Teste_CartService_CalculateTotal_Quantidade_Preco, 
+Teste_CartService_CalculateTotal_Quantidade_Preco_Vazio."
+amostra-3.diff,Nenhum,"saveProduct_shouldSaveProductSuccessfully, saveProduct_shouldHandleInvalidProduct","TesteValidacaoEstoque, TesteSalvarProduto, TesteLogSalvamentoProduto"
+amostra-4.diff,"testSuccessfulUserRegistration, testUserIsPersistedAfterRegistration, testNewUserCanLogin, testRegistrationServiceIntegrationWithDatabase","registerUser_ValidUser_ReturnsTrue, registerUser_InvalidUser_ReturnsFalse, userPersistenceTest
+
+**Explicação:**
+
+* **registerUser_ValidUser_ReturnsTrue:** Este teste provavelmente verifica se um usuário válido é registrado com sucesso. A remoção da linha `db.insert(user)` impacta diretamente esse cenário, pois o usuário não será mais salvo no banco de dados.
+
+* **registerUser_InvalidUser_ReturnsFalse:** Embora a mudança não afete diretamente a lógica de validação, é importante garantir que a remoção da linha `db.insert(user)` não cause efeitos colaterais inesperados no comportamento do método `register` para usuários inválidos.
+
+* **userPersistenceTest:**  Este teste (assumindo que exista) provavelmente verifica se os usuários são persistidos corretamente no banco de dados. A remoção da linha `db.insert(user)` invalida completamente esse teste.","Teste de Regra de Negócio: Validação de Usuário,
+Teste de Integração: Inserção de Usuário no Banco,
+Teste de Regressão: Cadastro de Usuário,
+Teste de Unidade: Validação de Usuário."
+amostra-5.diff,"ReportGeneratorTest.testGenerateDailyReportContent, ReportGeneratorTest.testGenerateDailyReportWithOrders, ReportGeneratorTest.testGenerateDailyReportEmptyOrders, DailyReportServiceIntegrationTest.testDailyReportOutput, DailyReportUAT.testDailyReportDisplayCorrectly","generateDailyReportTest, dailyReportFormatTest","ReportGenerator_DailyReport_Content, ReportGenerator_DailyReport_Format, ReportGenerator_DailyReport_TotalOrders."
+amostra-6.diff,"testApplyDiscountToProductPrice, testProductPriceCalculationWithDiscount, testShoppingCartTotalCalculationWithDiscountedItems, testAPIDisplaysCorrectDiscountedProductPrice, testCheckoutProcessWithDiscountedProducts","testApplyDiscount, testApplyDiscountWithZeroPercentage, testApplyDiscountWithNegativePercentage, testApplyDiscountWithHighPercentage","Teste de Cálculo de Desconto, 
+Teste de Validação de Preço, 
+Teste de Aplicação de Desconto em Produtos com Preço Zero, 
+Teste de Aplicação de Desconto em Produtos com Preço Negativo."
+amostra-7.diff,"PaymentServiceTest.testProcessPayment_ThrowsPaymentProcessingExceptionOnGatewayFailure, PaymentServiceTest.testProcessPayment_HandlesGatewayErrors, PaymentIntegrationTest.testFailedPaymentScenario, OrderServiceTest.testOrderCreationAbortsOnPaymentFailure, E2E_PurchaseFlow_WithInvalidPaymentMethod","testProcessPaymentWithValidCard, testProcessPaymentWithInvalidCard, testProcessPaymentWithGatewayException","Teste de Pagamento com Cartão Recusado, 
+Teste de Pagamento com Gateway de Pagamento Inválido, 
+Teste de Pagamento com Conexão de Rede Instável, 
+Teste de Pagamento com Cartão Vencido, 
+Teste de Pagamento com Limite de Cartão Excedido, 
+Teste de Pagamento com Erro de Autenticação no Gateway de Pagamento."
+amostra-8.diff,"testShippingForExactly100Dollars, testFreeShippingForOrdersOver100, testStandardShippingForOrdersUnder100, testShippingServiceBoundaryConditions","testCalculateShippingFreeForCartTotalAbove100, testCalculateShippingFixedForCartTotalBelow100","Teste de FreteGratisComCarrinhoAcimaDe100, 
+Teste de FreteFixoComCarrinhoAbaixoDe100, 
+Teste de FreteGratisComCarrinhoExatamente100, 
+Teste de FreteGratisComCarrinhoAbaixoDe100, 
+Teste de FreteFixoComCarrinhoAcimaDe100."
+amostra-9.diff,"testCouponStatusUpdateAfterSuccessfulApplication, testCouponCannotBeUsedMultipleTimes, testCouponServiceApplyCouponFlow","applyCoupon_ValidCoupon_ShouldApplyDiscount, applyCoupon_ValidCoupon_ShouldMarkCouponAsUsed, applyCoupon_ValidCoupon_ShouldSaveCouponToDatabase
+
+**Observação:** Os testes listados são hipotéticos, baseados na análise do impacto da remoção da linha `coupon.setUsed(true);`. Em um cenário real, os nomes exatos dos testes dependeriam da suíte de testes existente.","CouponService_applyCoupon_validCoupon, 
+CouponService_applyCoupon_invalidCoupon, 
+CouponService_applyCoupon_couponAlreadyUsed, 
+CouponService_applyCoupon_couponNotFound, 
+CouponService_applyCoupon_cartEmpty, 
+CouponService_applyCoupon_cartAlreadyAppliedCoupon."
+amostra-10.diff,"testIsStockAvailable_ProductDoesNotExist, testIsStockAvailable_InvalidProductId, InventoryServiceIntegrationTest.testPurchaseWithNonExistentProduct","testIsStockAvailableWithValidProduct, testIsStockAvailableWithInsufficientStock, testIsStockAvailableWithNonExistentProduct","isStockAvailable_QuantidadeInsuficiente, isStockAvailable_ProdutoNaoEncontrado, isStockAvailable_QuantidadeSuficiente, isStockAvailable_QuantidadeZero, isStockAvailable_ProdutoComEstoqueInsuficiente"
+amostra-11.diff,"OrderServiceTest.testCancelOrderThrowsUnauthorizedExceptionForNonAdmin, OrderServiceTest.testCancelOrderSuccessfullyForAdmin, OrderServiceTest.testCancelOrderSuccessfullyForRegularUser, OrderServiceTest.testCancelOrderUpdatesOrderStatus, OrderServiceTest.testCancelOrderPersistsChanges","testCancelOrderAsAdmin, testCancelOrderAsRegularUser, testUnauthorizedCancellation","CancelarOrderTest, CancelOrderUnauthorizedTest, CancelOrderAdminTest, CancelOrderDatabaseTest, CancelOrderStatusTest"
+amostra-12.diff,"test_getTopRecommendations_boundaryConditions, test_getTopRecommendations_limitGreaterThanCatalogSize, test_getTopRecommendations_limitEqualsCatalogSize, test_getTopRecommendations_limitZero, test_getTopRecommendations_emptyCatalog, test_getTopRecommendations_validScenario, test_recommendationService_integration, test_api_getRecommendations_responseContent","getTopRecommendations_ReturnsCorrectNumberOfRecommendations, getTopRecommendations_HandlesEmptyCatalog, getTopRecommendations_HandlesLimitGreaterThanCatalogSize","getTopRecommendationsTest, getTopRecommendationsEdgeCasesTest, getTopRecommendationsLimitExceededTest, getTopRecommendationsEmptyCatalogTest, getTopRecommendationsNullCatalogTest, getTopRecommendationsNullLimitTest"
+amostra-13.diff,"InvoiceExporterTest.testExportToCsvSuccessfully, InvoiceExporterTest.testExportToCsvWithEmptyData, InvoiceExporterTest.testResourceReleaseOnExport, InvoiceExporterIntegrationTest.testExportedFileAvailability",Nenhum,"Teste de Exportação de Fatura para CSV com Vazamento de Recursos, 
+Teste de Exportação de Fatura para CSV com Exceção de IOException, 
+Teste de Exportação de Fatura para CSV com Arquivo Vazio, 
+Teste de Exportação de Fatura para CSV com Arquivo Existente."
+amostra-14.diff,"testExportToCsv_SuccessfulExport,testExportToCsv_CorrectFileContent,testExportToCsv_ResourceLeakageDetection,testExportToCsv_FileHandleRelease,testExportToCsv_ErrorHandlingWithResourceClosure",Nenhum,"Teste_Exportar_Boletos_Csv, Teste_Exportar_Notas_Fiscais_Csv, Teste_Exportar_Boletos_Csv_Multiple_Invoices, Teste_Exportar_Boletos_Csv_Invalid_Invoice, Teste_Exportar_Boletos_Csv_Invalid_Filename, Teste_Exportar_Boletos_Csv_IOException, Teste_Exportar_Boletos_Csv_Resource_Leak."
+amostra-15.diff,"testExportToCsv_ResourceManagement, testExportToCsv_MultipleExports, testExportToCsv_ContentVerification",Nenhum,"Teste de Exportação de Fatura para CSV com Vazamento de Recursos, 
+Teste de Exportação de Fatura para CSV com Exceção de IOException, 
+Teste de Exportação de Fatura para CSV com Lista de Faturas Vazia, 
+Teste de Exportação de Fatura para CSV com Ficheiro de Saída Inválido."
+amostra-16.diff,Nenhum,Nenhum,Nenhum.
+amostra-17.diff,Nenhum,Nenhum,Nenhum
+amostra-18.diff,"testAddFunds, testWalletBalanceUpdate, testAddFundsConcurrently, testThreadSafetyAddFunds, testConcurrentDepositsRaceCondition","WalletServiceAddFundsConcurrencyTest, WalletServiceBalanceTest","TesteConcorrenciaAddFunds, TesteAddFundsValidacao, TesteAddFundsComSaldoNegativo, TesteAddFundsComValorZero, TesteAddFundsComValorNegativo, TesteAddFundsComValorMaiorQueSaldo."
+amostra-19.diff,"UserValidatorTest.testValidEmails, UserValidatorTest.testInvalidEmails, UserValidatorTest.testEmailsWithSpecialCharactersInLocalPart, UserRegistrationServiceTest.testRegisterUserWithValidEmail, UserRegistrationServiceTest.testRegisterUserWithInvalidEmailFormat, UserProfileServiceTest.testUpdateEmail, E2ERegistrationFlowTest.testEmailValidationOnRegistrationForm","testIsValidEmailWithValidEmail, testIsValidEmailWithInvalidEmail, testIsValidEmailWithSpecialCharacters, testIsValidEmailWithEmptyEmail
+
+*(Supondo que esses testes existam para validar a função `isValidEmail` com diferentes cenários de entrada.)*","Teste de Validação de Email com Caracteres Especiais, 
+Teste de Validação de Email com Domínio Válido, 
+Teste de Validação de Email com Endereço de Email Inválido, 
+Teste de Validação de Email com Caracteres Números."
+amostra-20.diff,CustomerMapperTest,"Nenhum
+
+A mudança no código apenas renomeou variáveis locais (`n` para `fullName` e `e` para `email`), mas a lógica do método `toDto` permanece inalterada. Portanto, nenhum teste existente deve ser impactado por essa alteração.","CustomerMapperTest_toDto_Customer; 
+CustomerMapperTest_toDto_Customer_Invalid; 
+CustomerMapperTest_toDto_Customer_Null; 
+CustomerMapperTest_toDto_Customer_Empty; 
+CustomerMapperTest_toDto_Customer_WithNullFields;"
+amostra-21.diff,Erro,"testIsCampaignActive, testCampaignStartDateValidation, testCampaignActiveStatus (assumindo que esses testes existem e cobrem a lógica modificada)","Teste de CampaignService_isCampaignActive_ReturnsTrue_WhenCampaignIsActive, 
+Teste de CampaignService_isCampaignActive_ReturnsFalse_WhenCampaignIsNotActive, 
+Teste de CampaignService_isCampaignActive_ThrowsNullPointerException_WhenCampaignIsNull, 
+Teste de CampaignService_isCampaignActive_ThrowsNullPointerException_WhenTodayIsNull."
+amostra-22.diff,Erro,Nenhum,Nenhum
+amostra-23.diff,Erro,"testApplyPromoCodeWithValidCode, testApplyPromoCodeWithInvalidCode, testApplyPromoCodeWithNullInput","Teste_Aplicacao_PromoCode, Teste_Aplicacao_PromoCode_Invalido, Teste_Aplicacao_PromoCode_Vazio, Teste_Aplicacao_PromoCode_Nulo."
+amostra-24.diff,"OrderProcessorTest.testRemoveCanceledOrders_containsCanceledItems, OrderProcessorTest.testRemoveCanceledOrders_noCanceledItems, OrderProcessorTest.testRemoveCanceledOrders_emptyList, OrderProcessorTest.testRemoveCanceledOrders_allCanceledItems, OrderServiceIntegrationTest.testOrderCleanupWorkflow","removeCanceledOrders_ShouldRemoveCanceledOrders, removeCanceledOrders_ShouldNotRemoveNonCanceledOrders, removeCanceledOrders_ShouldHandleEmptyList, removeCanceledOrders_ShouldThrowExceptionOnConcurrentModification
+
+**Observação:** Como o código modificado introduz um erro crítico (ConcurrentModificationException), é essencial executar testes que validem a remoção de pedidos cancelados e a manipulação de exceções. Os testes listados acima são hipotéticos, mas devem cobrir esses cenários. Se os nomes exatos dos testes não forem conhecidos, é crucial revisar os testes existentes para garantir que esses casos sejam cobertos.","Testes de integração de processamento de pedidos, Teste de remoção de pedidos cancelados, Teste de remoção de pedidos cancelados em lotes, Teste de processamento de pedidos com pedidos cancelados, Teste de processamento de pedidos com remoção de pedidos cancelados."
+amostra-25.diff,"CatalogServiceTest.testGetFeaturedProducts, CatalogControllerTest.testGetFeaturedProductsEndpoint, CatalogApiTest.testGetFeaturedProducts",Nenhum,"getFeaturedProductsTest, CatalogServiceTest, ProductRepositoryTest, DatabaseIntegrationTest"
+amostra-26.diff,"EmailNotifierTest.testSendNotification, NotificationServiceIntegrationTest.testEmailSending",Nenhum,"EmailNotifierTest, EmailNotificationServiceTest, UserNotificationTest, SendNotificationWithSmtpTest, SmtpClientTest"
+amostra-27.diff,"testReserveStockUpdatesProductStock, testReserveStockPersistsChangesToDatabase, testProductAvailabilityAfterStockReservation, testOrderPlacementReservesStock","reserveStockTest, updateStockTest, saveProductTest","Teste de Reserva de Estoque com Quantidade Inválida, 
+Teste de Reserva de Estoque com Quantidade Zero, 
+Teste de Reserva de Estoque com Produto Não Existente, 
+Teste de Reserva de Estoque com Quantidade Máxima Permitida, 
+Teste de Reserva de Estoque com Quantidade Mínima Permitida, 
+Teste de Reserva de Estoque com Produto com Estoque Negativo."
+amostra-28.diff,Erro,Nenhum,Nenhum
+amostra-29.diff,Erro,Nenhum,"getFeaturedProductsTest, CatalogServiceTest, ProductRepositoryTest, DatabaseIntegrationTest"
+amostra-30.diff,Erro,Nenhum,Nenhum
